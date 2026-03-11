@@ -1,0 +1,186 @@
+/* ==========================================
+   KONTAKTSIDA – EXTRA STILAR
+   Fil: kontakt.css
+   ========================================== */
+
+/* Sidhero – återanvänd från om.css */
+.page-hero {
+    min-height: 45vh;
+    background:
+        linear-gradient(135deg, rgba(0,40,95,0.9) 0%, rgba(0,0,0,0.5) 100%),
+        url('image/2024-volvo-v60-cross-country.png') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 4rem 4rem;
+    margin-top: 70px;
+}
+
+.page-hero-content {
+    color: white;
+    max-width: 600px;
+}
+
+.page-hero-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    margin: 0.5rem 0;
+}
+
+.page-hero-content p { opacity: 0.7; font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* Kontaktsektionen */
+.contact-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+/* Vänster – info */
+.contact-info p,
+.contact-form-wrap p:not(.section-label):not(.form-note) {
+    color: var(--clr-gray);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-top: 2rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.info-item svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--clr-navy);
+    margin-top: 3px;
+}
+
+.info-item strong {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clr-dark);
+    margin-bottom: 0.25rem;
+}
+
+.info-item p {
+    font-size: 0.85rem;
+    color: var(--clr-gray);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Höger – formulär */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clr-gray);
+    font-weight: 500;
+}
+
+/* Inmatningsfält, select och textarea */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--clr-border);
+    background: var(--clr-white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--clr-dark);
+    outline: none;
+    transition: border-color var(--dur);
+    border-radius: 0;  /* Ingen rundning – passar Volvos rena stil */
+    appearance: none;  /* Ta bort OS-stil på select */
+}
+
+/* Fokuseffekt */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--clr-navy);
+}
+
+.form-group textarea {
+    resize: vertical;  /* Användaren kan bara ändra höjden */
+    min-height: 120px;
+}
+
+/* Skicka-knapp */
+.btn-submit {
+    padding: 1rem 2.5rem;
+    background: var(--clr-navy);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 2px solid var(--clr-navy);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background var(--dur), color var(--dur), transform var(--dur);
+}
+
+.btn-submit:hover {
+    background: transparent;
+    color: var(--clr-navy);
+    transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-note {
+    color: #2d8a2d !important;
+    font-size: 0.85rem !important;
+    font-weight: 500;
+}
+
+/* Responsiv */
+@media (max-width: 760px) {
+    .contact-grid  { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row      { grid-template-columns: 1fr; }
+    .page-hero     { padding: 2rem 1.5rem; }
+}
