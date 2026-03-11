@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Företaget – Volvo Bilar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================
+   OM-SIDA – EXTRA STILAR
+   Fil: om.css
+   ========================================== */
+
+/* Sidhero – mindre än startsidans hero */
+.page-hero {
+    min-height: 45vh;
+    background:
+        linear-gradient(135deg, rgba(0,40,95,0.9) 0%, rgba(0,0,0,0.5) 100%),
+        url('image/bilia_volvo_xc40_full_front_4x3.png') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 4rem 4rem;
+    margin-top: 70px; /* Kompensera för sticky header */
+}
+
+.page-hero-content {
+    color: white;
+    max-width: 600px;
+}
+
+.page-hero-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    margin: 0.5rem 0;
+}
+
+.page-hero-content p {
+    opacity: 0.7;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+/* Om-sida: innehåll */
+.about-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+
+.about-block p {
+    color: var(--clr-gray);
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* Tidslinje */
+.timeline-items {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    position: relative;
+}
+
+/* Horisontell linje */
+.timeline-items::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--clr-border);
+}
+
+.tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    padding-top: 0;
+}
+
+.tl-year {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--clr-navy);
+    background: var(--clr-light);
+    padding: 0.25rem 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.tl-item p {
+    font-size: 0.75rem;
+    color: var(--clr-gray);
+    line-height: 1.4;
+}
+
+/* Responsiv */
+@media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .timeline-items { grid-template-columns: repeat(2, 1fr); }
+    .timeline-items::before { display: none; }
+    .page-hero { padding: 2rem 1.5rem; }
+}
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                <line x1="32" y1="8" x2="40" y2="0" stroke="currentColor" stroke-width="2"/>
+                <line x1="32" y1="0" x2="40" y2="0" stroke="currentColor" stroke-width="2"/>
+                <line x1="40" y1="0" x2="40" y2="8" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>VOLVO BILAR</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Öppna meny">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="mainMenu">
+            <a href="index.html">Start</a>
+            <a href="index.html#cars">Våra Bilar</a>
+            <a href="om.html" class="active">Om Företaget</a>
+            <a href="kontakt.html">Kontakt</a>
+        </nav>
+    </header>
+
+    <!-- SIDHERO -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <p class="section-label">Vår historia</p>
+            <h1>Om <em>Volvo Bilar</em></h1>
+            <p>Grundat med ett löfte – att sätta människor i centrum.</p>
+        </div>
+    </section>
+
+    <!-- OM OSS-TEXT -->
+    <section class="about-page">
+        <div class="about-grid">
+            <div class="about-block">
+                <p class="section-label">Bakgrund</p>
+                <h2>Göteborg, 1927</h2>
+                <p>
+                    Volvo grundades av Assar Gabrielsson och Gustaf Larson med 
+                    visionen att tillverka bilar som klarar det svenska klimatet 
+                    och de tuffa vägarna – och framför allt skyddar passagerarna.
+                </p>
+                <p>
+                    Idag är Volvo ett av världens mest betrodda bilmärken, känt
+                    för sin banbrytande säkerhetsteknik, skandinaviska design
+                    och starka hållbarhetsarbete.
+                </p>
+            </div>
+            <div class="about-block">
+                <p class="section-label">Vår butik</p>
+                <h2>Välkommen in</h2>
+                <p>
+                    Vår anläggning i Stockholm erbjuder ett brett sortiment av
+                    nya Volvobilar. Hos oss möter du kunnig personal, möjlighet
+                    till provkörning och transparent rådgivning.
+                </p>
+                <p>
+                    Vi hjälper dig hitta rätt bil – oavsett om du söker en
+                    kompakt stadsbil, en elektrisk SUV eller en rymlig kombi.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tidslinje -->
+        <div class="timeline">
+            <p class="section-label" style="text-align:center; margin-bottom:2rem;">Milstolpar</p>
+            <div class="timeline-items">
+                <div class="tl-item"><span class="tl-year">1927</span><p>Volvo grundas i Göteborg</p></div>
+                <div class="tl-item"><span class="tl-year">1959</span><p>Volvos trepunktsbälte – räddar liv</p></div>
+                <div class="tl-item"><span class="tl-year">1998</span><p>Ford Motor Company köper Volvo Cars och gör märket till en del av sin fordonsgrupp.</p></div>
+                <div class="tl-item"><span class="tl-year">2010</span><p>Zhejiang Geely Holding Group från Kina köper Volvo Cars från Ford.</p></div>
+                <div class="tl-item"><span class="tl-year">2017</span><p>Volvo meddelar att alla nya bilmodeller ska vara elektrifierade (hybrid eller elbil).</p></div>
+                <div class="tl-item"><span class="tl-year">2030</span><p>Mål: 100% elektriskt</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo">VOLVO BILAR</span>
+                <p>Säkerhet, innovation och hållbar mobilitet sedan 1927.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Snabblänkar</h5>
+                <a href="index.html">Start</a>
+                <a href="index.html#cars">Våra Bilar</a>
+                <a href="om.html">Om Företaget</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+            <div class="footer-contact">
+                <h5>Kontakta oss</h5>
+                <p>📍 Tomtebodavägen 3A, 171 65 Solna Stockholm</p>
+                <p>📞 001-000 00 00</p>
+                <p>✉️ info@volvo-bilar.se</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Volvo Bilar – Alla rättigheter förbehållna</p>
+            <p>Integritetspolicy · Cookies</p>
+        </div>
+    </footer>
+
+    <!-- Länk till JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
