@@ -1,0 +1,854 @@
+/* ==========================================
+   VOLVO BILAR – STYLESHEET
+   Fil: style.css
+   Beskrivning: Stilar för hela webbplatsen
+   ========================================== */
+
+/* ------------------------------------------
+   1. CSS-VARIABLER (Custom Properties)
+   ------------------------------------------ */
+   :root {
+    /* Färger – Volvos officiella palett */
+    --clr-navy:    #00285f;   /* Volvo-blå */
+    --clr-red:     #c8102e;   /* Volvo-röd */
+    --clr-light:   #f4f3ef;   /* Kremvit bakgrund */
+    --clr-white:   #ffffff;
+    --clr-dark:    #111318;
+    --clr-gray:    #6b6f78;
+    --clr-border:  #e0ddd6;
+
+    /* Typografi */
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body:    'DM Sans', sans-serif;
+
+    /* Avstånd */
+    --space-xs:  0.5rem;
+    --space-sm:  1rem;
+    --space-md:  2rem;
+    --space-lg:  4rem;
+    --space-xl:  8rem;
+
+    /* Animationstider */
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --dur: 0.4s;
+}
+
+/* ------------------------------------------
+   2. ÅTERSTÄLLNING & GRUNDSTIL
+   ------------------------------------------ */
+*, *::before, *::after {
+    box-sizing: border-box; /* Alla mått inkluderar padding */
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Mjuk scroll vid ankarlänkar */
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--clr-light);
+    color: var(--clr-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Förhindrar horisontell scroll */
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ------------------------------------------
+   3. LADDNINGS-OVERLAY
+   ------------------------------------------ */
+   .loader {
+    position: fixed;
+    inset: 0;                          /* Täcker hela skärmen */
+    background: var(--clr-navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    z-index: 9999;
+    transition: opacity 0.6s var(--ease), visibility 0.6s;
+}
+
+/* Klassen läggs till av JS när sidan är laddad */
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-logo {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--clr-white);
+    letter-spacing: 0.4em;
+}
+
+/* Animerad laddningsbar */
+.loader-bar {
+    width: 200px;
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loader-bar span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--clr-white);
+    animation: loadBar 1.5s var(--ease) forwards;
+}
+
+@keyframes loadBar {
+    to { width: 100%; }
+}
+
+/* ------------------------------------------
+   4. HEADER & NAVIGATION
+   ------------------------------------------ */
+.header {
+    position: fixed;             /* Stannar kvar vid scroll */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);  /* Frostat glas-effekt */
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur), box-shadow var(--dur);
+}
+
+/* Skugga dyker upp efter scroll (hanteras av JS) */
+.header.scrolled {
+    border-color: var(--clr-border);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+}
+
+/* Logotyp */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--clr-navy);
+    letter-spacing: 0.08em;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--clr-navy);
+    flex-shrink: 0;
+}
+
+/* Navigationslänkar */
+.menu {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.menu a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clr-gray);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color var(--dur);
+}
+
+/* Understrykning via ::after */
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--clr-navy);
+    transition: width var(--dur) var(--ease);
+}
+
+.menu a:hover,
+.menu a.active {
+    color: var(--clr-navy);
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+    width: 100%; /* Understrykning glider fram */
+}
+
+/* Hamburgermeny (dold på desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--clr-navy);
+    transition: transform var(--dur), opacity var(--dur);
+}
+
+/* ------------------------------------------
+   5. HERO
+   ------------------------------------------ */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background:
+        linear-gradient(135deg, rgba(0,40,95,0.85) 0%, rgba(0,0,0,0.4) 100%),
+        url('image/volvo-ex30-2027.png') center/cover no-repeat;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Mörkare överlapp för textläsbarhet */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,40,95,0.6) 0%, transparent 70%);
+}
+
+/* Dekorativa vertikala linjer */
+.hero-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-evenly;
+    pointer-events: none;
+    opacity: 0.08;
+}
+
+.hero-lines span {
+    display: block;
+    width: 1px;
+    background: white;
+}
+
+/* Innehåll */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    animation: heroFadeIn 1.2s var(--ease) 1.6s both; /* Fördröjd inkomst */
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: var(--space-sm);
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 8rem); /* Flytande textstorlek */
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+}
+
+.hero-title em {
+    font-style: italic;
+    color: #8ab4e8; /* Ljus blå accent */
+}
+
+.hero-sub {
+    font-size: 0.95rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: var(--space-lg);
+}
+
+/* CTA-knappar */
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--clr-red);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 2px solid var(--clr-red);
+    transition: background var(--dur), transform var(--dur);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    transform: translateY(-2px);
+}
+
+.btn-ghost {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: transparent;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 2px solid rgba(255,255,255,0.5);
+    transition: border-color var(--dur), transform var(--dur);
+}
+
+.btn-ghost:hover {
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Scrollindikator */
+.scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: scrollAnim 2s ease-in-out infinite;
+}
+
+@keyframes scrollAnim {
+    0%   { top: -100%; }
+    100% { top: 200%; }
+}
+
+/* ------------------------------------------
+   6. DELADE STILAR (rubriker, labels)
+   ------------------------------------------ */
+.section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--clr-red);
+    margin-bottom: 0.75rem;
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--clr-navy);
+}
+
+h2 em {
+    font-style: italic;
+    color: var(--clr-red);
+}
+
+/* ------------------------------------------
+   7. INTRO-SEKTION
+   ------------------------------------------ */
+.intro {
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--clr-white);
+}
+
+.intro-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Fast vänsterkolumn */
+    gap: 5rem;
+    align-items: center;
+}
+
+/* Statistikblock */
+.intro-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-right: 3rem;
+    border-right: 1px solid var(--clr-border);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--clr-navy);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clr-gray);
+    margin-top: 0.25rem;
+}
+
+/* Textkolumn */
+.intro-text p {
+    color: var(--clr-gray);
+    margin-top: 1.25rem;
+    max-width: 520px;
+    font-size: 0.95rem;
+}
+
+/* ------------------------------------------
+   8. BILSEKTIONEN
+   ------------------------------------------ */
+.cars {
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--clr-light);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* Kortgalleri – tre kolumner */
+.cars-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Enskilt bilkort */
+.car-card {
+    background: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--clr-border);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur);
+    position: relative;
+    overflow: hidden;
+}
+
+.car-card:hover {
+    transform: translateY(-8px); /* Lyfter kortet vid hover */
+    box-shadow: 0 20px 60px rgba(0,40,95,0.15);
+}
+
+/* Framhävt (populärast) kort */
+.car-card.featured {
+    border-color: var(--clr-navy);
+}
+
+.car-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--clr-navy);
+}
+
+/* Bildwrapper */
+.car-img-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #d8dde6;
+    overflow: hidden;
+}
+
+.car-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          /* Bilden fyller utan förvrängning */
+    transition: transform 0.6s var(--ease);
+}
+
+.car-card:hover .car-img-wrap img {
+    transform: scale(1.05); /* Mjuk zoom vid hover */
+}
+
+/* Platshållare om bild saknas */
+.car-img-wrap.img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-img-wrap.img-placeholder::after {
+    content: 'Bild ej tillgänglig';
+    font-size: 0.75rem;
+    color: var(--clr-gray);
+    letter-spacing: 0.1em;
+}
+
+/* Etikett (badge) */
+.car-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.8rem;
+    background: var(--clr-navy);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.car-badge.popular {
+    background: var(--clr-red);
+}
+
+/* Kortinnehåll */
+.car-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+.car-num {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--clr-gray);
+    letter-spacing: 0.2em;
+}
+
+.car-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--clr-navy);
+}
+
+.car-tagline {
+    font-size: 0.82rem;
+    color: var(--clr-gray);
+    margin-bottom: 0.5rem;
+}
+
+/* Specifikationslista */
+.car-specs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--clr-border);
+    border-bottom: 1px solid var(--clr-border);
+    flex: 1;
+}
+
+.car-specs li {
+    font-size: 0.82rem;
+    color: var(--clr-gray);
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-specs li strong {
+    color: var(--clr-dark);
+    font-weight: 500;
+    min-width: 100px;
+}
+
+/* Kortfot: pris + länk */
+.car-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.price {
+    font-size: 0.8rem;
+    color: var(--clr-gray);
+}
+
+.price strong {
+    font-size: 1rem;
+    color: var(--clr-navy);
+    font-weight: 600;
+}
+
+.btn-card {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-red);
+    letter-spacing: 0.05em;
+    transition: letter-spacing var(--dur);
+}
+
+.btn-card:hover {
+    letter-spacing: 0.1em; /* Bokstäverna sprids åt vid hover */
+}
+
+/* ------------------------------------------
+   9. USP-BÄLTE (fyra fördelar)
+   ------------------------------------------ */
+.usp {
+    background: var(--clr-navy);
+    padding: var(--space-lg);
+}
+
+.usp-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.usp-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background var(--dur);
+}
+
+.usp-item:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.usp-item svg {
+    width: 32px;
+    height: 32px;
+    color: #8ab4e8;
+}
+
+.usp-item h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.usp-item p {
+    font-size: 0.8rem;
+    opacity: 0.65;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------
+   10. FOOTER
+   ------------------------------------------ */
+.footer {
+    background: var(--clr-dark);
+    color: rgba(255,255,255,0.6);
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding: var(--space-lg);
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.footer-brand p,
+.footer-contact p {
+    font-size: 0.82rem;
+    line-height: 1.8;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.footer-links h5,
+.footer-contact h5 {
+    color: white;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    font-size: 0.82rem;
+    transition: color var(--dur);
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.25rem var(--space-lg);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    opacity: 0.4;
+}
+
+/* ------------------------------------------
+   11. RESPONSIV DESIGN
+       Skärmar <= 960px (t.ex. surfplattor)
+   ------------------------------------------ */
+@media (max-width: 960px) {
+
+    /* Navigering – hamburgermeny */
+    .menu-toggle { display: flex; }
+
+    .menu {
+        display: none;            /* Dold som standard */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: white;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        gap: 1.25rem;
+        border-top: 1px solid var(--clr-border);
+    }
+
+    /* Klassen läggs till av JS */
+    .menu.open { display: flex; }
+
+    /* Intro: en kolumn */
+    .intro-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .intro-stats {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid var(--clr-border);
+        padding-right: 0;
+        padding-bottom: var(--space-md);
+    }
+
+    /* Bilkort: två kolumner */
+    .cars-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* USP: två kolumner */
+    .usp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer: en kolumn */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* ------------------------------------------
+   12. RESPONSIV DESIGN
+       Skärmar <= 600px (mobiltelefoner)
+   ------------------------------------------ */
+@media (max-width: 600px) {
+    .header { padding: 1rem 1.5rem; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .intro { padding: var(--space-lg) var(--space-sm); }
+    .cars { padding: var(--space-lg) var(--space-sm); }
+    .usp  { padding: var(--space-md) var(--space-sm); }
+
+    /* Bilkort: en kolumn på mobil */
+    .cars-grid { grid-template-columns: 1fr; }
+
+    /* USP: en kolumn på mobil */
+    .usp-grid  { grid-template-columns: 1fr; }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
