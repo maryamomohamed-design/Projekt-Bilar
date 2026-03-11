@@ -1,23 +1,4 @@
-/* ==========================================
-   VOLVO BILAR – JAVASCRIPT
-   Fil: script.js
-   Beskrivning: Interaktivitet för webbplatsen
-   ========================================== */
 
-
-/* ------------------------------------------
-   1. LADDNINGSOVERLAY
-      Döljer laddningsskärmen när sidan är klar
-   ------------------------------------------ */
-   window.addEventListener('load', function () {
-    const loader = document.getElementById('loader');
-
-
-    // Vänta lite extra så animationen hinner synas
-    setTimeout(function () {
-        loader.classList.add('hidden'); // CSS-klassen döljer overlayen
-    }, 1800);
-});
 
 
 /* ------------------------------------------
