@@ -179,7 +179,7 @@ a {
     min-height: 600px;
     background:
         linear-gradient(135deg, rgba(0,40,95,0.85) 0%, rgba(0,0,0,0.4) 100%),
-        url('image/volvo-ex30-2027.png') center/cover no-repeat;
+        url('volvo-ex30-2027.png') center/cover no-repeat;
     
     display: flex;
     align-items: center;
