@@ -66,56 +66,7 @@ a {
     text-decoration: none;
 }
 
-/* ------------------------------------------
-   3. LADDNINGS-OVERLAY
-   ------------------------------------------ */
-   .loader {
-    position: fixed;
-    inset: 0;                          /* Täcker hela skärmen */
-    background: var(--clr-navy);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    z-index: 9999;
-    transition: opacity 0.6s var(--ease), visibility 0.6s;
-}
 
-/* Klassen läggs till av JS när sidan är laddad */
-.loader.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader-logo {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 300;
-    color: var(--clr-white);
-    letter-spacing: 0.4em;
-}
-
-/* Animerad laddningsbar */
-.loader-bar {
-    width: 200px;
-    height: 2px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.loader-bar span {
-    display: block;
-    height: 100%;
-    width: 0;
-    background: var(--clr-white);
-    animation: loadBar 1.5s var(--ease) forwards;
-}
-
-@keyframes loadBar {
-    to { width: 100%; }
-}
 
 /* ------------------------------------------
    4. HEADER & NAVIGATION
