@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <!-- Teckenkodning och responsiv viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sidtitel -->
+    <title>Volvo Bilar – Framtidens Fordon</title>
+
+    <!-- Google Fonts – Cormorant Garamond (display) + DM Sans (brödtext) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Extern CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =========================
+         LADDNINGS-OVERLAY
+         ========================= -->
+    <div class="loader" id="loader">
+        <div class="loader-logo">VOLVO</div>
+        <div class="loader-bar"><span></span></div>
+    </div>
+
+    <!-- =========================
+         HEADER & NAVIGATION
+         ========================= -->
+    <header class="header" id="header">
+        <!-- Logotyp -->
+        <div class="logo">
+            <!-- SVG-cirkel (Volvos ikoniska ringsymbol) -->
+            <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                <line x1="32" y1="8" x2="40" y2="0" stroke="currentColor" stroke-width="2"/>
+                <line x1="32" y1="0" x2="40" y2="0" stroke="currentColor" stroke-width="2"/>
+                <line x1="40" y1="0" x2="40" y2="8" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>VOLVO BILAR</span>
+        </div>
+
+        <!-- Hamburgermeny (mobilknapp) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Öppna meny">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- Navigationslänkar -->
+        <nav class="menu" id="mainMenu">
+            <a href="index.html" class="active">Start</a>
+            <a href="#cars">Våra Bilar</a>
+            <a href="om.html">Om Företaget</a>
+            <a href="kontakt.html">Kontakt</a>
+        </nav>
+    </header>
+
+    <!-- =========================
+         HERO / STARTSIDA
+         ========================= -->
+    <section class="hero" id="home">
+        <!-- Bakgrundsöverlapp med gradient -->
+        <div class="hero-overlay"></div>
+
+        <!-- Dekorativa linjer -->
+        <div class="hero-lines">
+            <span></span><span></span><span></span>
+        </div>
+
+        <!-- Huvudtext -->
+        <div class="hero-content">
+            <p class="hero-eyebrow">Välkommen till</p>
+            <h1 class="hero-title">
+                Framtidens<br>
+                <em>Volvo</em>
+            </h1>
+            <p class="hero-sub">Säkerhet · Design · Hållbarhet</p>
+            <div class="hero-cta">
+                <a href="#cars" class="btn-primary">Utforska bilar</a>
+                <a href="om.html" class="btn-ghost">Om oss</a>
+            </div>
+        </div>
+
+        <!-- Scrollindikator -->
+        <div class="scroll-hint">
+            <span>Scrolla</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- =========================
+         INTRO / OM VOLVO
+         ========================= -->
+    <section class="intro" id="about">
+        <div class="intro-inner">
+            <!-- Vänster: Statistik -->
+            <div class="intro-stats">
+                <div class="stat">
+                    <span class="stat-num">1927</span>
+                    <span class="stat-label">Grundat</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">100+</span>
+                    <span class="stat-label">Länder</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">700k</span>
+                    <span class="stat-label">Bilar/år</span>
+                </div>
+            </div>
+
+            <!-- Höger: Text -->
+            <div class="intro-text">
+                <p class="section-label">Vår filosofi</p>
+                <h2>Byggt för <em>livet</em> –<br>designat för framtiden</h2>
+                <p>
+                    Volvo grundades i Göteborg 1927 med ett löfte: att bygga
+                    säkra fordon som varar. I dag är det löftet större än
+                    någonsin – vi leder övergången till elektrisk mobilitet
+                    utan att kompromissa med kvalitet eller design.
+                </p>
+                <p>
+                    Hos oss hittar du noggrant utvalda modeller för alla
+                    livsstilar – från kompakta stadskörare till rymliga familjeSUV:ar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         BILMODELLER
+         ========================= -->
+    <section class="cars" id="cars">
+        <!-- Rubrik -->
+        <div class="section-header">
+            <p class="section-label">Våra modeller</p>
+            <h2>Välj din <em>Volvo</em></h2>
+        </div>
+
+        <!-- Kortgalleri med tre bilar -->
+        <div class="cars-grid">
+
+            <!-- ---- Bil 1: EX30 ---- -->
+            <article class="car-card" data-index="01">
+                <!-- Bildplats – byt src mot din bild -->
+                <div class="car-img-wrap">
+                    <img
+                        src="image/volvo-ex30-2024.png"  alt="Volvo EX30" width="500">
+                        alt="Volvo EX30 – kompakt elektrisk SUV i vit färg"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('img-placeholder')"
+                    >
+                    <!-- Etikett -->
+                    <span class="car-badge">Elektrisk</span>
+                </div>
+
+                <div class="car-info">
+                    <span class="car-num">01</span>
+                    <h3>Volvo EX30</h3>
+                    <p class="car-tagline">Kompakt elSUV för staden</p>
+                    <ul class="car-specs">
+                        <li><strong>Räckvidd</strong> upp till 480 km</li>
+                        <li><strong>0–100 km/h</strong> 5,3 s</li>
+                        <li><strong>Effekt</strong> 272 hk</li>
+                        <li><strong>Laddtid</strong> 26 min (10–80%)</li>
+                    </ul>
+                    <div class="car-footer">
+                        <span class="price">Från <strong>429 000 kr</strong></span>
+                        <a href="ex30.html" class="btn-card">Läs mer →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ---- Bil 2: XC40 Recharge ---- -->
+            <article class="car-card featured" data-index="02">
+                <div class="car-img-wrap">
+                    <img
+                        src="image/2026-volvo-xc40-pr-102-68a60b38765a7.png" alt="Volvo XC40 Recharge" width="500">
+                        alt="Volvo XC40 Recharge – elektrisk SUV i blå färg"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('img-placeholder')"
+                    >
+                    <span class="car-badge popular">Populärast</span>
+                </div>
+
+                <div class="car-info">
+                    <span class="car-num">02</span>
+                    <h3>Volvo XC40 Recharge</h3>
+                    <p class="car-tagline">Smart SUV med Twin Motor</p>
+                    <ul class="car-specs">
+                        <li><strong>Räckvidd</strong> upp till 418 km</li>
+                        <li><strong>0–100 km/h</strong> 4,9 s</li>
+                        <li><strong>Effekt</strong> 408 hk</li>
+                        <li><strong>Laddtid</strong> 28 min (10–80%)</li>
+                    </ul>
+                    <div class="car-footer">
+                        <span class="price">Från <strong>599 000 kr</strong></span>
+                        <a href="xc40.html" class="btn-card">Läs mer →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ---- Bil 3: V60 ---- -->
+            <article class="car-card" data-index="03">
+                <div class="car-img-wrap">
+                    <img
+                        src="image/309343_Volvo_V60_Recharge_Plug-in_Hybrid_T6_Ultimate.png" alt="Volvo V60" width="500">
+                        alt="Volvo V60 – elegant kombi i grå färg"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('img-placeholder')"
+                    >
+                    <span class="car-badge">Hybrid</span>
+                </div>
+
+                <div class="car-info">
+                    <span class="car-num">03</span>
+                    <h3>Volvo V60</h3>
+                    <p class="car-tagline">Klassisk kombi – modern kraft</p>
+                    <ul class="car-specs">
+                        <li><strong>Motor</strong> T8 Plug-in Hybrid</li>
+                        <li><strong>0–100 km/h</strong> 4,6 s</li>
+                        <li><strong>Effekt</strong> 455 hk</li>
+                        <li><strong>El-räckvidd</strong> upp till 90 km</li>
+                    </ul>
+                    <div class="car-footer">
+                        <span class="price">Från <strong>450 000 kr</strong></span>
+                        <a href="v60.html" class="btn-card">Läs mer →</a>
+                    </div>
+                </div>
+            </article>
+
+        </div><!-- /cars-grid -->
+    </section>
+
+    <!-- =========================
+         USP-BÄLTE (fördelar)
+         ========================= -->
+    <section class="usp">
+        <div class="usp-grid">
+            <div class="usp-item">
+                <!-- Ikon: sköld -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/>
+                </svg>
+                <h4>Säkerhet i världsklass</h4>
+                <p>5 stjärnor i Euro NCAP – varje modell, varje år.</p>
+            </div>
+            <div class="usp-item">
+                <!-- Ikon: blixt (el) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <h4>Elektrisk framtid</h4>
+                <p>Hela sortimentet elektrifierat senast 2030.</p>
+            </div>
+            <div class="usp-item">
+                <!-- Ikon: blad (miljö) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M2 22c2-4 4-8 10-10C18 10 22 6 22 2c-4 0-8 2-10 6C9 11 7 16 2 22z"/>
+                </svg>
+                <h4>Hållbarhet</h4>
+                <p>Klimatneutralt globalt sett senast 2040.</p>
+            </div>
+            <div class="usp-item">
+                <!-- Ikon: hjärta (service) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <h4>5 års garanti</h4>
+                <p>Trygghet genom hela ägandetiden.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <!-- Kolumn 1: Logotyp -->
+            <div class="footer-brand">
+                <span class="footer-logo">VOLVO BILAR</span>
+                <p>Säkerhet, innovation och hållbar mobilitet sedan 1927.</p>
+            </div>
+
+            <!-- Kolumn 2: Snabblänkar -->
+            <div class="footer-links">
+                <h5>Snabblänkar</h5>
+                <a href="index.html">Start</a>
+                <a href="#cars">Våra Bilar</a>
+                <a href="om.html">Om Företaget</a>
+                <a href="kontakt.html">Kontakt</a>
+            </div>
+
+            <!-- Kolumn 3: Kontakt -->
+            <div class="footer-contact">
+                <h5>Kontakta oss</h5>
+                <p>📍 Tomtebodavägen 3A, 171 65 Solna Stockholm</p>
+                <p>📞 001-000 00 00</p>
+                <p>✉️ info@volvo-bilar.se</p>
+            </div>
+        </div>
+
+        <!-- Nedre rad -->
+        <div class="footer-bottom">
+            <p>© 2026 Volvo Bilar – Alla rättigheter förbehållna</p>
+            <p>Integritetspolicy · Cookies</p>
+        </div>
+    </footer>
+
+    <!-- Länk till JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
